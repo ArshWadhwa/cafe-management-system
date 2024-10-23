@@ -1,8 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/cafe
-    username: postgres
-    password: postgres
-
-server:
-  port: 8081
