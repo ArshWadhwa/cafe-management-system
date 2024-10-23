@@ -17,6 +17,15 @@ String dbName = System.getenv("DB_USER") != null ? System.getenv("DB_NAME") : "c
 String username = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "postgres";
 String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "postgres";
 
+flyway {
+    url = "jdbc:postgresql://localhost:5432/"+dbName
+    user = username
+    password = password
+    locations = ["filesystem:${project.projectDir}/src/main/resources/migrations"]
+    baselineVersion = "0"
+    baselineOnMigrate = true
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
