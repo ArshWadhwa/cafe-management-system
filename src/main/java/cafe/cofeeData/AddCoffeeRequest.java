@@ -1,8 +1,8 @@
-package cafe.data;
+package cafe.cofeeData;
 
 import lombok.Data;
 
 @Data
 public class AddCoffeeRequest {
-    Coffee coffee;
+    private Coffee coffee;
 }

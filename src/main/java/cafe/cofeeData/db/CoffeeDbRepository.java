@@ -1,4 +1,4 @@
-package cafe.data.db;
+package cafe.cofeeData.db;
 
 import cafe.entity.CoffeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
