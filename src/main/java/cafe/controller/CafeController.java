@@ -1,10 +1,10 @@
 package cafe.controller;
 
-import cafe.data.AddCoffeeRequest;
-import cafe.data.AddCoffeeResponse;
-import cafe.data.Coffee;
-import cafe.data.GetAllCoffeeResponse;
-import cafe.data.db.CoffeeDbRepository;
+import cafe.cofeeData.AddCoffeeRequest;
+import cafe.cofeeData.AddCoffeeResponse;
+import cafe.cofeeData.Coffee;
+import cafe.cofeeData.GetAllCoffeeResponse;
+import cafe.cofeeData.db.CoffeeDbRepository;
 import cafe.entity.CoffeeEntity;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://127.0.0.1:5501")
 @RequestMapping("/coffee")
 public class CafeController {
-    private final CoffeeDbRepository coffeeDbRepository;
+    private CoffeeDbRepository coffeeDbRepository;
 
     public CafeController(CoffeeDbRepository coffeeDbRepository) {
         this.coffeeDbRepository = coffeeDbRepository;

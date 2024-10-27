@@ -1,4 +1,4 @@
-package cafe.data;
+package cafe.cofeeData;
 
 import lombok.Data;
 
