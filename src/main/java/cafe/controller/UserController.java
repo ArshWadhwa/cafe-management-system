@@ -2,6 +2,8 @@ package cafe.controller;
 
 import cafe.cofeeData.*;
 import cafe.cofeeData.db.UserDbRepository;
+import cafe.entity.CartEntity;
+import cafe.entity.CoffeeEntity;
 import cafe.entity.UserEntity;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 @RestController
@@ -77,4 +80,5 @@ public class UserController {
         return user;
 
     }
+
 }

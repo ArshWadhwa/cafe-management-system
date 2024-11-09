@@ -9,6 +9,18 @@ import java.time.Instant;
 @Data
 @Table(name = "coffee")
 public class CoffeeEntity {
+    @Override
+    public String toString() {
+        return "CoffeeEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

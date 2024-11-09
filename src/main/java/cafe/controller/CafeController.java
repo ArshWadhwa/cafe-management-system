@@ -1,10 +1,8 @@
 package cafe.controller;
 
-import cafe.cofeeData.AddCoffeeRequest;
-import cafe.cofeeData.AddCoffeeResponse;
-import cafe.cofeeData.Coffee;
-import cafe.cofeeData.GetAllCoffeeResponse;
+import cafe.cofeeData.*;
 import cafe.cofeeData.db.CoffeeDbRepository;
+import cafe.entity.CartEntity;
 import cafe.entity.CoffeeEntity;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://127.0.0.1:5501")
@@ -47,7 +46,7 @@ public class CafeController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public GetAllCoffeeResponse getAllCoffee(){
+    public GetAllCoffeeResponse getAllCoffee() {
         List<CoffeeEntity> coffeeEntityList = coffeeDbRepository.findAll();
 
         GetAllCoffeeResponse response = new GetAllCoffeeResponse();
@@ -58,11 +57,44 @@ public class CafeController {
             coffee.setName(coffeeEntity.getName());
             coffee.setImgURL(coffeeEntity.getImage());
             coffee.setPrice(coffeeEntity.getPrice());
+            coffee.setId(coffeeEntity.getId());
             coffeeList.add(coffee);
         });
         response.setCoffeeList(coffeeList);
         return response;
     }
+    @PutMapping("/update")
+    public void updateCoffee(@RequestParam Long id, @RequestBody UpdateCoffeeRequest updateCoffeeRequest) throws Exception {
+        Optional<CoffeeEntity> coffeeOptional = coffeeDbRepository.findById(id);
+        if (coffeeOptional.isPresent()) {
+            CoffeeEntity coffee = coffeeOptional.get();
+            coffee.setName(updateCoffeeRequest.getNewName());
+            coffee.setPrice(updateCoffeeRequest.getNewPrice());
+            coffee.setImage(updateCoffeeRequest.getNewImgURL());
+            coffee.setDescription(updateCoffeeRequest.getNewDescription());
+            System.out.println(coffee.toString());
+            coffeeDbRepository.save(coffee);
+        } else {
+            throw new Exception("Coffee not present");
+        }
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteCoffee(@RequestBody DeleteCoffee deleteCoffee) {
+        Long coffee_id = deleteCoffee.getCoffee_id();
+        Optional<CoffeeEntity> coffeeOptional = coffeeDbRepository.findById(coffee_id);
+        if (coffeeOptional.isPresent()) {
+            coffeeDbRepository.deleteById(coffee_id);
+            return "Coffee item with id"+ coffee_id +"deleted successfully";
+        }
+        else {
+            return "Coffee item with ID " + coffee_id + " not found.";
+        }
+    }
+
+
+
 
 
 }
+
