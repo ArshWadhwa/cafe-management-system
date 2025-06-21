@@ -16,7 +16,7 @@ import java.util.Optional;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5501")
+@CrossOrigin(origins = "http://127.0.0.1:5502")
 @RequestMapping("/cart")
 public class CartController {
     private CartDbRepository cartDbRepository;
@@ -42,8 +42,6 @@ public class CartController {
         cartDbRepository.save(cart);
 
         return;
-
-
 
     }
     @GetMapping(

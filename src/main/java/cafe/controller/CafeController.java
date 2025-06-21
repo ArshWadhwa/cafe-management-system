@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5501")
+@CrossOrigin(origins = "http://127.0.0.1:5502")
 @RequestMapping("/coffee")
 public class CafeController {
     private CoffeeDbRepository coffeeDbRepository;
@@ -63,6 +63,7 @@ public class CafeController {
         response.setCoffeeList(coffeeList);
         return response;
     }
+
     @PutMapping("/update")
     public void updateCoffee(@RequestParam Long id, @RequestBody UpdateCoffeeRequest updateCoffeeRequest) throws Exception {
         Optional<CoffeeEntity> coffeeOptional = coffeeDbRepository.findById(id);
@@ -91,10 +92,6 @@ public class CafeController {
             return "Coffee item with ID " + coffee_id + " not found.";
         }
     }
-
-
-
-
 
 }
 
