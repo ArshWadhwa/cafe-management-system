@@ -336,10 +336,5 @@ The application is configured to accept requests from `http://127.0.0.1:5502` fo
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
 
 **Happy Coding! ☕**
